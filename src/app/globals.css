@@ -4,18 +4,42 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --primary: #004156;
+  --secondary: #A1C7DC;
+  --tertiary: #E5F7FF;
+
+  --text-primary: #004156;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --secondary: #E5F7FF;
+    --tertiary: #A1C7DC;
+
+    --text-primary: #E5F7FF;
   }
+} */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  color: var(--foreground);
+  height: 100vh;
+  color: var(--text-primary);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .grid-container {
+    @apply grid gap-x-4 gap-y-8 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1;
+  }
+
+  .icon {
+    @apply lg:size-8 md:size-6 sm:size-4 text-primary;
+  }
 }
