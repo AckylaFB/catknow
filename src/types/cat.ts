@@ -1,9 +1,23 @@
-export interface Cat {
+type Breed = {
+  weight: { imperial: string; metric: string };
   id: string;
   name: string;
-  description: string;
-  origin: string;
+  cfa_url?: string;
+  vetstreet_url?: string;
+  vcahospitals_url?: string;
   temperament: string;
+  origin: string;
+  country_code: string;
+  description: string;
   life_span: string;
-  image_url: string;
-}
+  alt_names: string;
+  wikipedia_url?: string;
+};
+
+export type Cat = {
+  id: string;
+  url: string;
+  width: number;
+  height: number;
+  breeds: Breed[];
+};

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import cat from "../../../public/cat.svg";
 
@@ -12,7 +13,7 @@ export default function CatsLayout(props: LayoutProps) {
       <header className="flex items-end gap-1 justify-center py-4 mb-8 relative">
         <Image src={cat} alt="CatKnow" width={50} height={50} />
         <h1 className="text-4xl font-bold text-primary">
-          CatKnow
+          <Link href="/cats">CatKnow</Link>
         </h1>
       </header>
 

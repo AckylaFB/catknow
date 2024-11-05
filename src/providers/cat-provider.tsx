@@ -1,6 +1,7 @@
 "use client";
 
-import { CatImage } from "@/types/cat-image";
+import { fetchCatById } from "@/actions/fetch-cat-by-id";
+import { Cat } from "@/types/cat";
 import { createContext, useContext, useState } from "react";
 
 interface CatProviderProps {
@@ -8,17 +9,17 @@ interface CatProviderProps {
 }
 
 interface CatContextType {
-  cats: CatImage[];
-  handleSetCats: (newCats: CatImage[]) => void;
-  getCat: (id: string) => CatImage | undefined;
+  cats: Cat[];
+  handleSetCats: (newCats: Cat[]) => void;
+  getCat: (id: string) => Promise<Cat | undefined>;
 }
 
 const CatContext = createContext<CatContextType>({} as CatContextType);
 
 export default function CatProvider(props: CatProviderProps) {
-  const [cats, setCats] = useState<Map<string, CatImage>>(new Map());
+  const [cats, setCats] = useState<Map<string, Cat>>(new Map());
 
-  const handleSetCats = (newCats: CatImage[]) => {
+  const handleSetCats = (newCats: Cat[]) => {
     setCats((prev) => {
       const newCatsMap = new Map(prev);
       newCats.forEach((cat) => {
@@ -28,8 +29,14 @@ export default function CatProvider(props: CatProviderProps) {
     });
   };
 
-  const getCat = (id: string) => {
-    return cats.get(id);
+  const getCat = async (id: string) => {
+    if (cats.has(id)) {
+      return cats.get(id);
+    }
+
+    const cat = await fetchCatById(id);
+    handleSetCats([cat]);
+    return cat;
   };
 
   return (

@@ -42,4 +42,12 @@ body {
   .icon {
     @apply lg:size-8 md:size-6 sm:size-4 text-primary;
   }
+
+  .label {
+    @apply font-bold text-xs text-gray-500;
+  }
+
+  .link {
+    @apply text-sm text-gray-500 hover:underline hover:text-blue-500 transition-all;
+  }
 }

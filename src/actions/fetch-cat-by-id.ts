@@ -2,9 +2,8 @@
 
 import { Cat } from "@/types/cat";
 
-export async function fetchCats(limit: number = 12) {
-  const response = await fetch(
-    `${process.env.API_URL}/images/search?limit=${limit}&has_breeds=1`,
+export async function fetchCatById(id: string) {
+  const response = await fetch(`${process.env.API_URL}/images/${id}`,
     {
       headers: {
         "x-api-key": process.env.API_KEY || "",
@@ -14,5 +13,5 @@ export async function fetchCats(limit: number = 12) {
 
   const data = await response.json();
 
-  return data as Cat[];
+  return data as Cat;
 }

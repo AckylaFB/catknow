@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import { useCats } from "@/providers/cat-provider";
 import CatCard from "@/components/card";
 import LoadMore from "@/components/load-more";
-import { CatImage } from "@/types/cat-image";
+import { Cat } from "@/types/cat";
 
 interface CatsGridProps {
-  initialCats: CatImage[];
+  initialCats: Cat[];
 }
 
 export default function CatsGrid(props: CatsGridProps) {

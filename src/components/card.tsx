@@ -1,8 +1,8 @@
-import { CatImage } from "@/types/cat-image";
+import { Cat } from "@/types/cat";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function CatCard(props: { cat: CatImage }) {
+export default function CatCard(props: { cat: Cat }) {
   return (
     <Link
       href={`/cats/${props.cat.id}`}
