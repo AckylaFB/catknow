@@ -13,6 +13,7 @@ export default function CatCard(props: { cat: Cat }) {
         src={props.cat.url}
         alt={props.cat.url}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
       />
     </Link>
   );

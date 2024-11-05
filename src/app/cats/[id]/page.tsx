@@ -1,11 +1,6 @@
-"use client";
-
+import { fetchCatById } from "@/actions/fetch-cat-by-id";
 import Image from "next/image";
 import Link from "next/link";
-import { use, useEffect, useState } from "react";
-
-import { useCats } from "@/providers/cat-provider";
-import { Cat } from "@/types/cat";
 
 interface CatPageProps {
   params: Promise<{
@@ -13,27 +8,22 @@ interface CatPageProps {
   }>;
 }
 
-export default function CatPage(props: CatPageProps) {
-  const params = use(props.params);
-  const { getCat } = useCats();
-  const [cat, setCat] = useState<Cat | undefined>(undefined);
-
-  useEffect(() => {
-    getCat(params.id).then((cat) => {
-      setCat(cat);
-    });
-  }, [params.id]);
-
-  if (!cat) {
-    return <div>Cat not found</div>;
-  }
-
+export default async function CatPage(props: CatPageProps) {
+  const params = await props.params;
+  const cat = await fetchCatById(params.id);
   const breed = cat.breeds[0];
 
   return (
     <div className="grid lg:grid-cols-[1.5fr_1fr] grid-cols-1 lg:gap-0 gap-8 lg:h-2/4 h-full lg:w-auto w-3/4 lg:mx-0 mx-auto my-auto">
       <section className="relative w-full h-full ">
-        <Image src={cat.url} alt={breed.name} fill className="rounded-lg" />
+        <Image
+          src={cat.url}
+          alt={breed.name}
+          fill
+          className="rounded-lg"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          priority
+        />
       </section>
 
       <section className="flex flex-col lg:pl-8 gap-6">

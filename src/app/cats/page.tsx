@@ -9,9 +9,9 @@ import {
 import { IoIosBowtie } from "react-icons/io";
 
 import { fetchCats } from "@/actions/fetch-cats";
-import CatsGrid from "@/components/grid";
 import CategoryChip from "@/components/category-chip";
-
+import CatCard from "@/components/card";
+import LoadMore from "@/components/load-more";
 
 export default async function CatsPage() {
   const initialCats = await fetchCats(24);
@@ -28,7 +28,13 @@ export default async function CatsPage() {
         <CategoryChip name="Ties" icon={<IoIosBowtie className="icon" />} />
       </section>
 
-      <CatsGrid initialCats={initialCats} />
+      <main className="grid-container">
+        {initialCats.map((cat) => (
+          <CatCard key={cat.id} cat={cat} />
+        ))}
+
+        <LoadMore />
+      </main>
     </>
   );
 }
