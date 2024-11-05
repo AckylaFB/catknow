@@ -1,33 +1,31 @@
 "use client";
 
-import { fetchCats } from "@/actions/fetch-cats";
-import { CatImage } from "@/types/cat-image";
 import { useState, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
-import CatCard from "./card";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useInView } from "react-intersection-observer";
 
-let page = 2;
+import { fetchCats } from "@/actions/fetch-cats";
+import { useCats } from "@/providers/cat-provider";
+import CatCard from "./card";
 
 export default function LoadMore() {
   const { ref, inView } = useInView();
-  const [data, setData] = useState<CatImage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { cats, handleSetCats } = useCats();
 
   useEffect(() => {
     if (inView && !isLoading) {
       setIsLoading(true);
-      fetchCats(page).then((cats) => {
-        setData((prev) => [...prev, ...cats]);
-        page++;
+      fetchCats().then((newCats) => {
+        handleSetCats(newCats);
         setIsLoading(false);
       });
     }
-  }, [inView, isLoading]);
+  }, [inView]);
 
   return (
     <>
-      {data.map((cat) => (
+      {cats.map((cat) => (
         <CatCard key={cat.id} cat={cat} />
       ))}
 
