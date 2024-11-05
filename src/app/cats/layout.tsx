@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import ThemeToggler from "@/components/theme-toggler";
 import cat from "../../../public/cat.svg";
+
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +17,8 @@ export default function CatsLayout(props: LayoutProps) {
         <h1 className="text-4xl font-bold text-primary">
           <Link href="/cats">CatKnow</Link>
         </h1>
+
+        <ThemeToggler />
       </header>
 
       <div className="flex-1 flex flex-col">{props.children}</div>

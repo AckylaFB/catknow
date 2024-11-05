@@ -5,21 +5,19 @@
 :root {
   --background: #ffffff;
   --primary: #004156;
-  --secondary: #A1C7DC;
-  --tertiary: #E5F7FF;
+  --secondary: #a1c7dc;
+  --tertiary: #e5f7ff;
 
   --text-primary: #004156;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --secondary: #E5F7FF;
-    --tertiary: #A1C7DC;
+.dark {
+  --background: #0a0a0a;
+  --secondary: #e5f7ff;
+  --tertiary: #a1c7dc;
 
-    --text-primary: #E5F7FF;
-  }
-} */
+  --text-primary: #e5f7ff;
+}
 
 * {
   box-sizing: border-box;
