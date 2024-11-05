@@ -8,11 +8,14 @@ import {
 } from "react-icons/fa";
 import { IoIosBowtie } from "react-icons/io";
 
-import { cats } from "@/cats";
 import CatCard from "@/components/card";
 import CategoryChip from "@/components/category-chip";
+import { fetchCats } from "@/actions/fetch-cats";
+import LoadMore from "@/components/load-more";
 
-export default function CatsPage() {
+export default async function CatsPage() {
+  const cats = await fetchCats(1, 24);
+
   return (
     <>
       <section className="flex items-center justify-center gap-4 mb-8">
@@ -26,9 +29,11 @@ export default function CatsPage() {
       </section>
 
       <main className="grid-container">
-        {cats.map((cat) => (
+        {cats?.map((cat) => (
           <CatCard key={cat.id} cat={cat} />
         ))}
+
+        <LoadMore />
       </main>
     </>
   );
