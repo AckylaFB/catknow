@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function CatCard(props: { cat: Cat }) {
   return (
     <Link
-      href={`/cats/${props.cat.id}`}
+      href={`/${props.cat.id}`}
       className="flex flex-col justify-between h-full bg-tertiary border border-secondary rounded-lg"
     >
       <div className="relative h-3/4">
