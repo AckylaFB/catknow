@@ -19,13 +19,17 @@ interface CatContextType {
 const CatContext = createContext<CatContextType>({} as CatContextType);
 
 export default function CatProvider(props: CatProviderProps) {
-  const [cats, setCats] = useState<Cat[]>([]);
+  const [cats, setCats] = useState<Record<string, Cat>>({});
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-
   const handleSetCats = (newCats: Cat[]) => {
-    setCats((prev) => [...prev, ...newCats]);
+    const newCatsById = newCats.reduce<Record<string, Cat>>((acc, cat) => {
+      acc[cat.id] = cat;
+      return acc;
+    }, {});
+
+    setCats((prev) => ({ ...prev, ...newCatsById }));
   };
 
   const handleSelectCategory = (categoryId: string) => {
@@ -33,8 +37,8 @@ export default function CatProvider(props: CatProviderProps) {
       setSelectedCategory(null);
     } else {
       setSelectedCategory(categoryId);
-      setCats([]);
     }
+    setCats({});
   };
 
   const handleSetIsLoading = (value: boolean) => {
@@ -44,7 +48,7 @@ export default function CatProvider(props: CatProviderProps) {
   return (
     <CatContext.Provider
       value={{
-        cats,
+        cats: Object.values(cats),
         handleSetCats,
         selectedCategory,
         handleSelectCategory,
