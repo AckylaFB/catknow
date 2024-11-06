@@ -1,4 +1,3 @@
-
 import { fetchCats } from "@/actions/fetch-cats";
 import { fetchCategories } from "@/actions/fetch-categories";
 import CatsGrid from "@/components/cats-grid";
@@ -13,7 +12,10 @@ export default async function CatsPage() {
   return (
     <>
       <Categories categories={categories} />
-      <CatsGrid initialCats={initialCats} />
+
+      <main>
+        <CatsGrid initialCats={initialCats} />
+      </main>
     </>
   );
 }

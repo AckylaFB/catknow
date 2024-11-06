@@ -1,39 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useInView } from "react-intersection-observer";
+import { useEffect } from "react";
 
 import { fetchCats } from "@/actions/fetch-cats";
 import { useCats } from "@/providers/cat-provider";
 import CatCard from "./card";
 
-export default function LoadMore() {
-  const { ref, inView } = useInView();
-  const { cats, selectedCategory, handleSetCats } = useCats();
-  const [isLoading, setIsLoading] = useState(false);
+interface LoadMoreProps {
+  inView: boolean;
+  ref: (node?: Element | null | undefined) => void;
+}
+
+export default function LoadMore(props: LoadMoreProps) {
+  const { cats, selectedCategory, handleSetCats, handleSetIsLoading, isLoading } = useCats();
 
   useEffect(() => {
-    if (inView && !isLoading) {
-      setIsLoading(true);
+    if (props.inView && !isLoading) {
+      handleSetIsLoading(true);
       fetchCats(12, selectedCategory).then((newCats) => {
         handleSetCats(newCats);
-        setIsLoading(false);
+        handleSetIsLoading(false);
       });
     }
-  }, [inView]);
+  }, [props.inView, selectedCategory]);
 
   return (
     <>
       {cats.map((cat) => (
-        <CatCard key={cat.id} cat={cat} />
+        <li key={cat.id} className="w-full aspect-square relative">
+          <CatCard cat={cat} />
+        </li>
       ))}
 
-      {inView && isLoading && (
-        <AiOutlineLoading3Quarters className="animate-spin text-primary text-4xl mx-auto" />
-      )}
-
-      <div ref={ref} />
+      <div ref={props.ref} />
     </>
   );
 }

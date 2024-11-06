@@ -9,9 +9,11 @@ interface CatProviderProps {
 
 interface CatContextType {
   cats: Cat[];
-  handleSetCats: (newCats: Cat[]) => void;
   selectedCategory: string | null;
+  isLoading: boolean;
+  handleSetCats: (newCats: Cat[]) => void;
   handleSelectCategory: (categoryId: string) => void;
+  handleSetIsLoading: (value: boolean) => void;
 }
 
 const CatContext = createContext<CatContextType>({} as CatContextType);
@@ -19,6 +21,8 @@ const CatContext = createContext<CatContextType>({} as CatContextType);
 export default function CatProvider(props: CatProviderProps) {
   const [cats, setCats] = useState<Cat[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const handleSetCats = (newCats: Cat[]) => {
     setCats((prev) => [...prev, ...newCats]);
@@ -33,9 +37,20 @@ export default function CatProvider(props: CatProviderProps) {
     }
   };
 
+  const handleSetIsLoading = (value: boolean) => {
+    setIsLoading(value);
+  };
+
   return (
     <CatContext.Provider
-      value={{ cats, handleSetCats, selectedCategory, handleSelectCategory }}
+      value={{
+        cats,
+        handleSetCats,
+        selectedCategory,
+        handleSelectCategory,
+        isLoading,
+        handleSetIsLoading,
+      }}
     >
       {props.children}
     </CatContext.Provider>

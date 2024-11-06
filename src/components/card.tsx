@@ -6,7 +6,6 @@ export default function CatCard(props: { cat: Cat }) {
   return (
     <Link
       href={`/cats/${props.cat.id}`}
-      className="w-full aspect-square relative"
     >
       <Image
         className="border border-primary rounded-lg"
