@@ -2,7 +2,7 @@
 
 import { Cat } from "@/types/cat";
 
-export async function fetchCats(limit: number = 12, categoryId: string = "") {
+export async function fetchCats(limit: number, categoryId: string | null = null) {
   let url = `${process.env.API_URL}/images/search?limit=${limit}`;
 
   if (categoryId) {

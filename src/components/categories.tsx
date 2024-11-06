@@ -22,7 +22,7 @@ export default function Categories(props: CategoriesProps) {
       {props.categories.map((category) => (
         <CategoryChip
           key={category.id}
-          name={category.name}
+          category={category}
           icon={getIcon(category.name)}
         />
       ))}

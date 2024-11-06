@@ -1,8 +1,7 @@
 
 import { fetchCats } from "@/actions/fetch-cats";
 import { fetchCategories } from "@/actions/fetch-categories";
-import CatCard from "@/components/card";
-import LoadMore from "@/components/load-more";
+import CatsGrid from "@/components/cats-grid";
 import Categories from "@/components/categories";
 
 export default async function CatsPage() {
@@ -14,14 +13,7 @@ export default async function CatsPage() {
   return (
     <>
       <Categories categories={categories} />
-
-      <main className="grid-container">
-        {initialCats.map((cat) => (
-          <CatCard key={cat.id} cat={cat} />
-        ))}
-
-        <LoadMore />
-      </main>
+      <CatsGrid initialCats={initialCats} />
     </>
   );
 }

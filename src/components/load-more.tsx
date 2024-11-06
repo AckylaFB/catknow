@@ -5,19 +5,19 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useInView } from "react-intersection-observer";
 
 import { fetchCats } from "@/actions/fetch-cats";
-import { Cat } from "@/types/cat";
+import { useCats } from "@/providers/cat-provider";
 import CatCard from "./card";
 
 export default function LoadMore() {
   const { ref, inView } = useInView();
+  const { cats, selectedCategory, handleSetCats } = useCats();
   const [isLoading, setIsLoading] = useState(false);
-  const [cats, setCats] = useState<Cat[]>([]);
 
   useEffect(() => {
     if (inView && !isLoading) {
       setIsLoading(true);
-      fetchCats().then((newCats) => {
-        setCats((prevCats) => [...prevCats, ...newCats]);
+      fetchCats(12, selectedCategory).then((newCats) => {
+        handleSetCats(newCats);
         setIsLoading(false);
       });
     }

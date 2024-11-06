@@ -38,7 +38,7 @@ body {
   }
 
   .icon {
-    @apply lg:size-8 md:size-6 sm:size-4 text-primary;
+    @apply lg:size-8 md:size-6 sm:size-4;
   }
 
   .label {
