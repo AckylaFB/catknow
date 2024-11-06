@@ -20,7 +20,7 @@ export default function CatsGrid(props: CatsGridProps) {
       <ul className="grid-container">
         {selectedCategory === null &&
           props.initialCats.map((cat) => (
-            <li key={cat.id} className="w-full aspect-square relative">
+            <li key={cat.id} className="w-full h-[25vh]">
               <CatCard cat={cat} />
             </li>
           ))}

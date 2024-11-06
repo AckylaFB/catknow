@@ -6,7 +6,7 @@ import Categories from "@/components/categories";
 export default async function CatsPage() {
   const [categories, initialCats] = await Promise.all([
     fetchCategories(),
-    fetchCats(24),
+    fetchCats(),
   ]);
 
   return (

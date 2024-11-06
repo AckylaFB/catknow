@@ -17,7 +17,7 @@ export default function LoadMore(props: LoadMoreProps) {
   useEffect(() => {
     if (props.inView && !isLoading) {
       handleSetIsLoading(true);
-      fetchCats(12, selectedCategory).then((newCats) => {
+      fetchCats(selectedCategory).then((newCats) => {
         handleSetCats(newCats);
         handleSetIsLoading(false);
       });
@@ -27,7 +27,7 @@ export default function LoadMore(props: LoadMoreProps) {
   return (
     <>
       {cats.map((cat) => (
-        <li key={cat.id} className="w-full aspect-square relative">
+        <li key={cat.id} className="w-full h-[25vh]">
           <CatCard cat={cat} />
         </li>
       ))}
