@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐱 CatKnow
 
-## Getting Started
+A delightful Next.js application that showcases various cat breeds and their characteristics, featuring a modern, responsive design with dark mode support.
 
-First, run the development server:
+## Overview
+
+CatKnow is an interactive web application that allows users to explore different cat breeds, their characteristics, and detailed information. Built with Next.js and styled with Tailwind CSS, it offers a seamless user experience with infinite scrolling, category filtering, and detailed breed information pages.
+
+## ✨ Features
+
+- **Breed Explorer**: Browse through various cat breeds with infinite scroll functionality
+- **Category Filtering**: Filter cats by categories like boxes, clothes, hats, and more
+- **Dark Mode**: Toggle between light and dark themes for comfortable viewing
+- **Detailed Information**: Access comprehensive breed details including:
+  - Origin and life span
+  - Physical characteristics
+  - Temperament
+  - External resources (Wikipedia, CFA, etc.)
+- **Responsive Design**: Optimized for all device sizes
+- **Image Optimization**: Built-in image optimization using Next.js Image component
+
+## 🖼️ Screenshots
+
+![Home](./public/Home.jpeg)
+![Home Dark](./public/Home-dark.jpeg)
+![Cat Page](./public/Cat-page.jpeg)
+![Cat Page Dark](./public/Cat-page-dark.jpeg)
+
+![Showcase](./public/CatKnow%20showcase.gif)
+
+## 🛠️ Technologies Used
+
+- **Frontend Framework**: Next.js 15.0
+- **Styling**: Tailwind CSS
+- **Language**: TypeScript
+- **Icons**: React Icons
+- **State Management**: React Context API
+- **Fonts**: Geist Sans & Geist Mono
+- **Intersection Observer**: For infinite scrolling
+
+## 🚀 Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [your-repository-url]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Create a `.env` file in the root directory with the following variables:
+```bash
+API_URL=your_cat_api_url
+API_KEY=your_cat_api_key
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-To learn more about Next.js, take a look at the following resources:
+## 💻 Usage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application is intuitive to use:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Browse cats on the main page
+2. Click category icons to filter cats by category
+3. Click on any cat card to view detailed information
+4. Toggle dark mode using the sun/moon icon
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📝 Code Structure
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project follows a clean architecture:
+
+- `/src/app`: Page components and routing
+- `/src/components`: Reusable UI components
+- `/src/actions`: Server actions for API calls
+- `/src/providers`: Context providers
+- `/src/types`: TypeScript type definitions
+
+---
+
+Built with ❤️ using Next.js and The Cat API
