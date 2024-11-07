@@ -14,7 +14,7 @@ export default async function CatPage(props: CatPageProps) {
   const breed = cat.breeds?.[0];
 
   return (
-    <div className="grid lg:grid-cols-[1.5fr_1fr] grid-cols-1 lg:gap-0 gap-8 lg:h-2/4 h-full lg:w-auto w-3/4 lg:mx-0 mx-auto my-auto">
+    <div className="grid lg:grid-cols-[1.5fr_1fr] grid-cols-1 lg:gap-0 gap-8 lg:h-2/4 h-full lg:w-auto sm:w-3/4 lg:mx-0 sm:mx-auto my-auto">
       <section className="relative w-full h-full ">
         <Image
           src={cat.url}

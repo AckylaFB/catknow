@@ -20,7 +20,9 @@ export default function CategoryChip(props: CategoryChipProps) {
       <div className={`flex-1 flex items-center justify-center w-full aspect-square rounded-lg transition-colors ${isSelected ? 'bg-primary text-secondary hover:bg-primary' : 'bg-tertiary text-primary hover:bg-secondary'}`}>
         {props.icon}
       </div>
-      <span className="text-sm font-semibold">{props.category.name}</span>
+      <span className="text-sm font-semibold hidden sm:block">
+        {props.category.name}
+      </span>
     </div>
   );
 }
