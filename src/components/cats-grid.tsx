@@ -1,5 +1,5 @@
 "use client";
-import { useInView } from "react-intersection-observer";
+import { useRef, useEffect, useState } from "react";
 
 import { useCats } from "@/providers/cat-provider";
 import { Cat } from "@/types/cat";
@@ -12,8 +12,24 @@ interface CatsGridProps {
 }
 
 export default function CatsGrid(props: CatsGridProps) {
-  const { ref, inView } = useInView();
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const observerRef = useRef<HTMLDivElement>(null);
   const { selectedCategory, isLoading } = useCats();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -25,12 +41,10 @@ export default function CatsGrid(props: CatsGridProps) {
             </li>
           ))}
 
-        <LoadMore inView={inView} ref={ref} />
+        <LoadMore isIntersecting={isIntersecting} ref={observerRef} />
       </ul>
 
-      {inView && isLoading && (
-        <Loading size="sm" />
-      )}
+      {isIntersecting && isLoading && <Loading size="sm" />}
     </>
   );
 }
